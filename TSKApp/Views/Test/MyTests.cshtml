@@ -1,0 +1,145 @@
+﻿@using TSKApp.PL.Models
+@model List<TestViewModel>
+    <style>
+        .form {
+            margin: 50px auto;
+            width: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form__container {
+            width: 275px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form__title {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-bottom: 40px;
+            font-size: 25px;
+            width: 100%;
+            line-height: 90px;
+            text-align: center;
+            color: #fff;
+            background-color: #37346b
+        }
+
+
+        .form-control {
+            border-radius: 25px;
+        }
+
+        .form__button {
+            margin-top: -7px;
+            display: inline-block;
+            color: #ffffff;
+            border-radius: 25px;
+            font-family: Verdana;
+            width: auto;
+            height: auto;
+            font-size: 16px;
+            padding: 10px 58px;
+            background: #6863ca;
+            border: 0;
+        }
+
+        .form__buttona {
+            margin-top: -20px;
+            display: inline-block;
+            color: #ffffff;
+            border-radius: 30px;
+            font-family: Verdana;
+            width: auto;
+            height: auto;
+            font-size: 16px;
+            padding: 5px 40px;
+            background: #614C6F;
+            border: 0;
+        }
+
+            .form__button:hover, .form__button:active {
+                color: #ffffff;
+                background: #37346b;
+            }
+        .form__buttona:hover, .form__buttona:active {
+            color: #ffffff;
+            background: #37346b;
+        }
+
+        .form__text {
+            font-size: 12px;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        .form_link {
+            margin-top: -10px;
+        }
+    </style>
+    <div class="">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 style="color:#6310CB;">Tests</h2>
+            </div>
+        </div>
+        @*<h2 class="form__title">Create test</h2>*@
+        <div id="ShowModalHere"></div>
+        <div class="deleteArea">
+            @if ((string)ViewBag.AllowError != null)
+            {
+                <span class="text-danger">Student not found</span>
+            }
+            @if (Model.Count > 0)
+            {
+                <table class="table table-bordered table-striped" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>
+                            Test
+                        </th>
+                        <th>
+                            Created At                        
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                    </thead>
+                <tbody id="table-body-area">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td width="">@item.Name</td>
+                                <td class="text-center" width="">@item.Created</td>
+                                <td class="text-center" width="">
+                                    <div>
+                                        <button class="btn btn-primary" data-toggle="ajax-modal" data-target="#allowStudent" data-url="/Allow/@item.Id">Allow</button>
+                                        <a class="btn btn-success" asp-controller="Statistic" asp-action="Index" asp-route-testId="@item.Id">Statistic</a>
+                                        <button class="btn btn-danger js-delete" data-Id="@item.Id">Delete</button>
+                                    </div>
+                            </td>
+                        </tr>
+                            @*<a class="d-flex" asp-action="TestPassing" asp-route-testId=@item.Id style="margin-right: 30px">*@
+                    }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div style="margin-top: 150px;">
+                    <span><b>Tests is empty</b></span>
+                </div>
+            }
+        </div>
+        <div>
+            <a class="form__button" href="/Test/CreateTest">Create</a>
+        </div>
+    </div>
+
+@section Scripts
+{
+    <script src="~/js/actions.js"></script>
+}

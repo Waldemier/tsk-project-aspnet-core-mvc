@@ -1,0 +1,53 @@
+﻿@model List<TSKApp.PL.Models.StatisticModel>
+
+<div class="container p-3">
+    <div class="row pt-3">
+        <div class="col-6">
+            <h2 style="color:#6310CB;">Statistic</h2>
+        </div>
+    </div>
+    
+    <br /><br />
+    @if (Model.Any())
+    {
+        <div class="row">
+            <div class="col-6">
+                <h2 style="color:#6310CB;">@Model[0].Test.Name</h2>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped" style="width: 100%; margin-bottom: 30px">
+            <thead>
+                <tr>
+                    <th>
+                        User
+                    </th>
+                    <th>
+                        Mark
+                    </th>
+                    <th>
+                        Date Passed  
+                    </th>
+                    <th>
+                        Must to pass before
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="table-body-area">
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td width="25%">@item.User.FirstName @item.User.LastName</td>
+                        <td class="text-center" width="15%">@item.Result</td>
+                        <td class="text-center" width="15%">@item.PassedDate</td>
+                        <td class="text-center" width="15%">@item.PassTo.Day/@item.PassTo.Month/@item.PassTo.Year </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Statistic is empty</p>
+    }
+
+</div>

@@ -1,0 +1,51 @@
+﻿@using TSKApp.PL.Models
+@model List<CorrectAnswerViewModel>
+
+<div class="d-flex justify-content-center" style="margin-top: 75px;">
+    <div>
+
+        <div class="card" style="width: 700px;">
+            <div class="card-header">
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <h4>@ViewBag.TestTitle</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div>
+                    <h4>Total marks: @ViewBag.TotalMarks</h4>
+                </div>
+                <hr />
+                <div>
+                    <div class="card">
+                        @foreach (var question in Model)
+                        {
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <span>@question.QuestionName</span>&nbsp;
+                                    <div>
+                                        @if (question.Correct)
+                                        {<i class="fas fa-check" style="color: green"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fas fa-times" style="color: red"></i>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer" style="margin-top: 20px;">
+                <div class="d-flex justify-content-center" >
+                    <div>
+                        <a class="btn" style="background-color:#6c44db; color: white" href="/">Back to main</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

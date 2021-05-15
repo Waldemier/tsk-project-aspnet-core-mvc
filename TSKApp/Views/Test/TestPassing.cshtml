@@ -1,0 +1,60 @@
+﻿@using static TSKApp.Enums.Helpers
+@using TSKApp.PL.Models
+@model QuestionViewModel
+
+<div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-around" style="margin-top: 40px">
+        @functions
+        {
+            public int Amount()
+            {
+                int counter = 1; 
+                foreach (var question in ViewBag.Questions)
+                {
+                    counter++;
+                }
+                return counter;
+            }
+        }
+        <form asp-controller="Test" asp-action="TestPassingAct" method="post">
+            <div>
+                <div class="d-flex justify-content-between" style="margin-bottom: 10px">
+                    <div class="row pt-3">
+                        <div class="col-6">
+                            <h3 style="color:#6310CB;">@ViewBag.TestTitle</h3>
+                        </div>
+                    </div>
+                    <h6 style="padding-top: 30px">Marked out of 1.00</h6>
+                </div>
+                <div class="card" style="width: 700px">
+                    <div class="card-body">
+                        <div>
+                            <div>
+                                <h5 style="margin-bottom: 15px">"@Model.Name"</h5>
+                                <input type="hidden" name="testId" value="@ViewBag.testId"/>
+                                <input type="hidden" name="questionId" value="@Model.Id"/>
+                                <input type="hidden" name="questionIndex" value="@ViewBag.QuestionIndex"/>
+                                <input type="hidden" name="totalMarks" value="@ViewBag.TotalMarks"/>
+                                <div class="card">
+                                    <div class="card-body" style="background-color: rgba(0,0,0,.03);">
+                                        @foreach (var answer in Model.AnswerViewModels)
+                                        {
+                                            <div class="d-flex" style="margin-top: 10px;padding-left: 20px;">
+                                                <input type="radio" name="answerId" value="@answer.Id" style="margin-top: 7px;"/>
+                                                <p style="margin-left: 20px;">@answer.Name</p>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row-reverse" style="margin-top: 20px">
+                    <button class="btn" type="submit" name="actionType" value=@TestPassingActions.NextQuestion style="font-size: 17px; background-color: #37346b; color: white;">Next question ></button>
+                </div>
+            </div>
+        </form>
+        <div/>
+    </div>
+</div>

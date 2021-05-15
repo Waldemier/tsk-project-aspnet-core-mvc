@@ -1,0 +1,107 @@
+﻿@using TSKApp.PL.Models
+@model List<TestViewModel>
+    <style>
+        .form {
+            margin: 50px auto;
+            width: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form__container {
+            width: 275px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form__title {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-bottom: 40px;
+            font-size: 25px;
+            width: 100%;
+            line-height: 90px;
+            text-align: center;
+            color: #fff;
+            background-color: #37346b
+        }
+
+
+        .form-control {
+            border-radius: 25px;
+        }
+
+        .form__button {
+            display: inline-block;
+            color: #ffffff;
+            border-radius: 25px;
+            font-family: Verdana;
+            width: auto;
+            height: auto;
+            font-size: 16px;
+            padding: 10px 58px;
+            background: #6863ca;
+            border: 0;
+        }
+
+
+
+            .form__button:hover, .form__button:active {
+                color: #ffffff;
+                background: #37346b;
+            }
+
+        .form__text {
+            font-size: 12px;
+        }
+
+        p {
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+
+
+
+    <div class="" style="margin-top: 20px">
+        @*<h2 class="form__title">User Account</h2>*@
+        <div>
+            <div class="row pt-4">
+                <div class="col-6">
+                    <h2 style="color:#6310CB;">Tests</h2>
+                </div>
+            </div>
+            <table class="table table-bordered table-striped" style="width: 100%;">
+                <thead>
+                <tr>
+                    <th>
+                        Test
+                    </th>
+                    <th>
+                        Pass to
+                    </th>
+                    <th>
+                        Teacher
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="table-body-area">
+                @foreach (var access in Model)
+                {
+                    <tr>
+                        <td width="30%">@access.Name</td>
+                        <td class="text-center" width="20%">@access.PassToDate.Day/@access.PassToDate.Month/@access.PassToDate.Year</td>
+                        <td class="text-center" width="20%">@access.User.FirstName @access.User.LastName</td>
+                        <td width="20%">
+                            <div class="d-flex justify-content-center">
+                                <a class="btn btn-success" asp-controller="Test" asp-action="BeginTestPassing" asp-route-testId=@access.Id asp-route-title="@access.Name" style="width: 100px;">Start</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>

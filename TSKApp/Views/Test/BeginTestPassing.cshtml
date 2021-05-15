@@ -1,0 +1,53 @@
+﻿@using TSKApp.PL.Models
+@using Microsoft.CodeAnalysis
+@model TestViewModel
+    <style>
+        .form {
+            margin: 50px auto;
+            width: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form__title {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-bottom: 40px;
+            font-size: 25px;
+            width: 100%;
+            line-height: 90px;
+            text-align: center;
+            color: #fff;
+            background-color: #37346b
+        }
+    </style>
+    <div class="d-flex justify-content-center">
+        <div style="margin-top: 35px; width:700px">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-center">
+                        <h4>@Model.Name</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <h4>@Model.User.FirstName @Model.User.LastName</h4>
+                                <div class="d-flex justify-content-center">
+                                    <img style='width:120px; height:120px; border-radius: 80px; margin-right: 20px' src="data:image/jpeg;base64,@(Convert.ToBase64String(Model.User.Avatar))"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center">
+                        <h4>Pass to:&nbsp;@Model.PassToDate.Day/@Model.PassToDate.Month/@Model.PassToDate.Year</h4>
+                    </div>
+                    <div class="d-flex justify-content-center" style="margin-top: 10px">
+                        <a class="btn btn-success" asp-action="TestPassing" asp-route-testId=@ViewBag.testId style="/*background-color:#6c44db;*/ color:white; width:150px;">Attemp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

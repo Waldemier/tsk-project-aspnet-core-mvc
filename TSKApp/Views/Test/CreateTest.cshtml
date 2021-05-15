@@ -1,0 +1,47 @@
+﻿@using TSKApp.PL.Models
+@model TestEditModel
+
+
+<div class="d-flex justify-content-center" style="margin-top: 55px">
+    <div class="card" style="width: 550px">
+        <div class="card-header">
+            <div>
+                <div>
+                    <h2 style="color:#6310CB;">Create Test</h2>
+                </div>
+            </div>
+        </div>
+        <form asp-action="CreateTest" class="form" method="post">
+            <div class="card-body">
+
+                <div>
+                    <div>
+                        <div>
+                            <label class="form-check-label">Title</label>
+                            @Html.TextBoxFor(model => model.Name, new {@class = "form-control", placeholder = "Input title"})
+                        </div>
+                        <div style="margin-bottom: 10px">
+                            <div style="margin-top: 20px;">
+                                <label class="form-check-label">Pass to</label>
+                                <div>
+                                    @Html.TextBoxFor(model => model.PassToDate, new {@class = "form-control", placeholder = "number", type = "date"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center mt-3">
+                    <div>
+                        <button class="btn" style="color: white; background: #6863ca; width: 150px" type="submit">Create</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+        
+   
+

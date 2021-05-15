@@ -1,0 +1,121 @@
+﻿@page
+@model LoginModel
+
+
+
+<style>
+    .form {
+        margin: 50px auto;
+        width: 700px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form__container {
+        width: 275px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form__title {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin-bottom: 40px;
+        font-size: 25px;
+        width: 100%;
+        line-height: 90px;
+        text-align: center;
+        color: #fff;
+        background-color: #37346b
+    }
+
+
+    .form-control {
+        border-radius: 25px;
+    }
+
+    .form__button {
+        margin-top: -7px;
+        display: inline-block;
+        color: #ffffff;
+        border-radius: 25px;
+        font-family: Verdana;
+        width: auto;
+        height: auto;
+        font-size: 16px;
+        padding: 10px 58px;
+        background: #6863ca;
+        border: 0;
+    }
+
+
+
+        .form__button:hover, .form__button:active {
+            color: #ffffff;
+            background: #37346b;
+        }
+
+    .form__text {
+        font-size: 12px;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+
+    .form_link {
+        margin-top: -10px;
+    }
+</style>
+<body>
+
+    <h1>@ViewData["Title"]</h1>
+    <form class="form" id="account" method="post">
+        @*<h2 class="form__title">TestingStudentKnowledge</h2>*@
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <div class="d-flex justify-content-center" style="margin-bottom: 30px">
+                            <i class="far fa-user fa-6x"></i>
+                        </div>
+                        <div class="d-flex justify-content-center" style="margin-bottom: 40px">
+                            <div class="form__container">
+                                <div class="form-group">
+                                    <input asp-for="Input.Email" class="form-control" placeholder="Email"/>
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Input.Password" class="form-control" placeholder="Password"/>
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label asp-for="Input.RememberMe">
+                                            <input asp-for="Input.RememberMe"/>
+                                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                        </label>
+                                    </div>
+                                </div>
+                                <button class="form__button" type="submit">Log in</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                
+            
+         <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p class="form_link">Don't have an account <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register now</a></p>
+
+    </form>
+
+
+
+
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
